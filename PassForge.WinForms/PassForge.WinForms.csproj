@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Forms\" />
+    <Folder Include="Presenters\" />
   </ItemGroup>
 
 </Project>
