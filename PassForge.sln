@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassForge.Core", "PassForge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassForge.WinForms", "PassForge.WinForms\PassForge.WinForms.csproj", "{8ECF0635-BD2C-4B25-AEA2-7CB7E01E5CF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassForge.WPF", "PassForge.WPF\PassForge.WPF.csproj", "{47B92982-4674-4E9E-9BC2-966172A43010}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8ECF0635-BD2C-4B25-AEA2-7CB7E01E5CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ECF0635-BD2C-4B25-AEA2-7CB7E01E5CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ECF0635-BD2C-4B25-AEA2-7CB7E01E5CF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47B92982-4674-4E9E-9BC2-966172A43010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47B92982-4674-4E9E-9BC2-966172A43010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47B92982-4674-4E9E-9BC2-966172A43010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47B92982-4674-4E9E-9BC2-966172A43010}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
