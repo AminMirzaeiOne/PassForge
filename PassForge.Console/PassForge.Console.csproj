@@ -11,4 +11,8 @@
     <Folder Include="Commands\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PassForge.Core\PassForge.Core.csproj" />
+  </ItemGroup>
+
 </Project>
