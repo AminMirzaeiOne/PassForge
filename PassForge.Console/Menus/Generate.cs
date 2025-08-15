@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PassForge.Console.Menus
 {
-    public class GenerateMenu
+    public class Generate
     {
 
     }
