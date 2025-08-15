@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PassForge.Console.Services
+﻿namespace PassForge.Console.Services
 {
-    public class FileExport
+    public static class FileExport
     {
-
+        public static void ExportToFile(IEnumerable<string> passwords, string filePath)
+        {
+            File.WriteAllLines(filePath, passwords);
+            PassForge.Console.Services.ConsoleUI.WriteSuccess($"لیست پسورد در فایل ذخیره شد: {filePath}");
+        }
     }
 }

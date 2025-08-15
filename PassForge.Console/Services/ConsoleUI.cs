@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PassForge.ConsoleApp.Services
+namespace PassForge.Console.Services
 {
     public static class ConsoleUI
     {

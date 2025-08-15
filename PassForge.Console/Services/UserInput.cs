@@ -1,4 +1,4 @@
-﻿namespace PassForge.ConsoleApp.Services
+﻿namespace PassForge.Console.Services
 {
     public static class UserInput
     {
