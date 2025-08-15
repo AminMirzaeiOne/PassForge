@@ -2,57 +2,31 @@
 {
     public static class UserInput
     {
-        public static string Prompt(string label, bool allowEmpty = false, string? placeholder = null)
+        public static string Prompt(string label, string? defaultValue = null, bool allowEmpty = false)
         {
-            System.Console.Write(label + (placeholder is null ? "" : $" ({placeholder})") + ": ");
-            var input = System.Console.ReadLine()?.Trim() ?? "";
-            if (!allowEmpty)
+            System.Console.Write(label + (defaultValue != null ? $" [{defaultValue}]" : "") + ": ");
+            var input = System.Console.ReadLine()?.Trim();
+            if (string.IsNullOrEmpty(input))
             {
-                while (string.IsNullOrWhiteSpace(input))
-                {
-                    System.Console.Write("لطفاً مقدار وارد کنید: ");
-                    input = System.Console.ReadLine()?.Trim() ?? "";
-                }
+                if (allowEmpty) return string.Empty;
+                return defaultValue ?? string.Empty;
             }
             return input;
         }
 
-        public static int PromptInt(string label, int min, int max, int? defaultValue = null)
+        public static bool PromptBool(string label, bool defaultValue = true)
         {
-            while (true)
-            {
-                System.Console.Write(label + $" ({min}-{max}" + (defaultValue.HasValue ? $", پیشفرض={defaultValue}" : "") + "): ");
-                var input = System.Console.ReadLine()?.Trim();
-                if (string.IsNullOrEmpty(input) && defaultValue.HasValue) return defaultValue.Value;
-                if (int.TryParse(input, out var value) && value >= min && value <= max) return value;
-                System.Console.WriteLine("مقدار نامعتبر است.");
-            }
+            System.Console.Write($"{label} (y/n) [{(defaultValue ? "y" : "n")}]: ");
+            var input = System.Console.ReadLine()?.Trim().ToLower();
+            if (string.IsNullOrEmpty(input)) return defaultValue;
+            return input.StartsWith("y");
         }
 
-        public static bool PromptYesNo(string label, bool? defaultYes = null)
+        public static int PromptInt(string label, int defaultValue)
         {
-            var hint = defaultYes == null ? "" : defaultYes.Value ? " [Y/n]" : " [y/N]";
-            System.Console.Write(label + hint + ": ");
-            var input = System.Console.ReadLine()?.Trim().ToLowerInvariant();
-
-            if (string.IsNullOrEmpty(input) && defaultYes.HasValue) return defaultYes.Value;
-            return input is "y" or "yes" or "بله";
-        }
-
-        public static string PromptSet(string label, string current)
-        {
-            System.Console.Write($"{label} (فعلی: \"{current}\"): ");
-            var s = System.Console.ReadLine()?.Trim() ?? "";
-            return string.IsNullOrEmpty(s) ? current : s;
-        }
-
-        public static string[] PromptList(string label, string[] current, string hint = "با کاما جدا کنید")
-        {
-            System.Console.Write($"{label} ({hint}) (فعلی: {string.Join(",", current)}): ");
-            var s = System.Console.ReadLine()?.Trim() ?? "";
-            return string.IsNullOrEmpty(s)
-                ? current
-                : s.Split(',').Select(x => x.Trim()).Where(x => x.Length > 0).ToArray();
+            System.Console.Write($"{label} [{defaultValue}]: ");
+            var input = System.Console.ReadLine();
+            return int.TryParse(input, out var result) ? result : defaultValue;
         }
     }
 }
