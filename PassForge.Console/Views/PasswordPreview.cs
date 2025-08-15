@@ -1,18 +1,21 @@
-﻿
-namespace PassForge.Console.Views
+﻿namespace PassForge.Console.Views
 {
     public static class PasswordPreview
     {
-        public static void Show(IEnumerable<string> passwords, int maxPreview = 20)
+        public static void Show(IEnumerable<string> list, int previewCount = 20)
         {
-            System.Console.WriteLine("📄 پیش‌نمایش پسوردها:");
-            int count = 0;
-            var list = passwords as IList<string> ?? passwords.ToList();
-            foreach (var p in list.Take(maxPreview))
-                System.Console.WriteLine($"  {++count}. {p}");
+            System.Console.WriteLine();
+            System.Console.WriteLine("Generated Passwords (Preview):");
+            System.Console.WriteLine("-------------------------------");
 
-            if (list.Count > maxPreview)
-                System.Console.WriteLine($"... و {list.Count - maxPreview} پسورد دیگر");
+            foreach (var pwd in list.Take(previewCount))
+                System.Console.WriteLine(pwd);
+
+            if (list.Count() > previewCount)
+            {
+                System.Console.WriteLine($"... and {list.Count() - previewCount} more");
+            }
+            System.Console.WriteLine();
         }
     }
 }
