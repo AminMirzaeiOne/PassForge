@@ -8,7 +8,6 @@ namespace PassForge.Console
         {
             System.Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            // حالت سریع (بدون منو) اگر آرگومان داده شده باشد
             if (args is { Length: > 0 })
             {
                 if (PassForge.Console.Services.Args.TryHandleFastMode(args, out var exitCode))
@@ -18,7 +17,7 @@ namespace PassForge.Console
                 }
             }
 
-            // حالت منویی و تعاملی
+
             PassForge.Console.Menus.Main.Show();
         }
     }
