@@ -2,10 +2,10 @@
 {
     public static class FileExport
     {
-        public static void ExportToFile(IEnumerable<string> passwords, string filePath)
+        public static void ExportToFile(IEnumerable<string> list, string path)
         {
-            File.WriteAllLines(filePath, passwords);
-            PassForge.Console.Services.ConsoleUI.WriteSuccess($"لیست پسورد در فایل ذخیره شد: {filePath}");
+            File.WriteAllLines(path, list);
+            ConsoleUI.WriteInfo($"Passwords exported to: {path}");
         }
     }
 }
