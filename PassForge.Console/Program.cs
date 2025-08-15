@@ -8,16 +8,14 @@ namespace PassForge.Console
         {
             System.Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            if (args is { Length: > 0 })
+            // Fast CLI mode if any args are provided
+            if (args is { Length: > 0 } && Args.TryHandleFastMode(args, out var exit))
             {
-                if (PassForge.Console.Services.Args.TryHandleFastMode(args, out var exitCode))
-                {
-                    Environment.Exit(exitCode);
-                    return;
-                }
+                Environment.Exit(exit);
+                return;
             }
 
-
+            // Interactive menu mode
             PassForge.Console.Menus.Main.Show();
         }
     }
