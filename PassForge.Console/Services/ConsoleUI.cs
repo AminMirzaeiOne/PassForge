@@ -1,45 +1,28 @@
-﻿using System;
-
-namespace PassForge.Console.Services
+﻿namespace PassForge.Console.Services
 {
     public static class ConsoleUI
     {
-        public static void WriteTitle(string text)
+        public static void WriteHeader(string text)
         {
+            System.Console.Clear();
             System.Console.ForegroundColor = ConsoleColor.Cyan;
-            System.Console.WriteLine("=== " + text + " ===");
-            System.Console.ResetColor();
-        }
-
-        public static void WriteOption(int index, string text)
-        {
-            System.Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.Write($"[{index}] ");
-            System.Console.ResetColor();
-            System.Console.WriteLine(text);
-        }
-
-        public static void WriteHint(string text)
-        {
-            System.Console.ForegroundColor = ConsoleColor.DarkGray;
             System.Console.WriteLine(text);
             System.Console.ResetColor();
+            System.Console.WriteLine();
         }
 
-        public static void WriteError(string text)
+        public static void WriteError(string message)
         {
             System.Console.ForegroundColor = ConsoleColor.Red;
-            System.Console.WriteLine("خطا: " + text);
+            System.Console.WriteLine("ERROR: " + message);
             System.Console.ResetColor();
         }
 
-        public static void WriteSuccess(string text)
+        public static void WriteInfo(string message)
         {
             System.Console.ForegroundColor = ConsoleColor.Green;
-            System.Console.WriteLine(text);
+            System.Console.WriteLine(message);
             System.Console.ResetColor();
         }
-
-        public static void Separator() => System.Console.WriteLine(new string('-', 50));
     }
 }
