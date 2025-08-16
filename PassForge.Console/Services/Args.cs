@@ -58,24 +58,16 @@ namespace PassForge.Console.Services
                     IncludeLowercase = GetBool(dict, "lower", true),
                     IncludeUppercase = GetBool(dict, "upper", true),
                     IncludeDigits = GetBool(dict, "digits", true),
-                    IncludeSpecial = GetBool(dict, "special", true),
+                    IncludeSpecial = GetBool(dict, "special", false), // default false in Core
 
-                    SpecialCharacters = Get(dict, "specialset") ?? "!@#$%^&*._-",
+                    Separators = (Get(dict, "seps") ?? "._-").ToCharArray().Distinct().ToList(),
 
-                    UseLeet = GetBool(dict, "leet", true),
+                    UseLeet = GetBool(dict, "leet", false), // default false
                     IncludeReversed = GetBool(dict, "reversed", true),
-                    IncludeWordCaseVariants = GetBool(dict, "case", true),
-                    RequireAtLeastOneFromEachSelectedCategory = GetBool(dict, "each", false),
 
-                    Separators = Get(dict, "seps") ?? "._-",
-                    MaxTokensPerPassword = GetInt(dict, "tokens", 2),
-                    AppendCommonNumbers = GetBool(dict, "numbers", true),
-
-                    MaxCount = GetInt(dict, "maxcount", 5000),
-                    CustomSuffixes = (Get(dict, "suffixes") ?? "!,123")
-                                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                                        .Select(s => s.Trim())
+                    MaxCount = GetInt(dict, "maxcount", 5000)
                 };
+
 
                 var generator = new PasswordGenerator(options);
                 var list = generator.Generate(user).ToList();
