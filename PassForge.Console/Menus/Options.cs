@@ -21,16 +21,10 @@ namespace PassForge.Console.Menus
                 System.Console.WriteLine($"4. Include Uppercase: {_options.IncludeUppercase}");
                 System.Console.WriteLine($"5. Include Digits: {_options.IncludeDigits}");
                 System.Console.WriteLine($"6. Include Special: {_options.IncludeSpecial}");
-                System.Console.WriteLine($"7. Special Characters: {_options.SpecialCharacters}");
+                System.Console.WriteLine($"7. Special Separators: {string.Join("", _options.Separators)}");
                 System.Console.WriteLine($"8. Use Leet Transformations: {_options.UseLeet}");
                 System.Console.WriteLine($"9. Include Reversed Words: {_options.IncludeReversed}");
-                System.Console.WriteLine($"10. Word Case Variants: {_options.IncludeWordCaseVariants}");
-                System.Console.WriteLine($"11. Require At Least One From Each Category: {_options.RequireAtLeastOneFromEachSelectedCategory}");
-                System.Console.WriteLine($"12. Separators: \"{_options.Separators}\"");
-                System.Console.WriteLine($"13. Max Tokens Per Password: {_options.MaxTokensPerPassword}");
-                System.Console.WriteLine($"14. Append Common Numbers: {_options.AppendCommonNumbers}");
-                System.Console.WriteLine($"15. Custom Suffixes: {string.Join(", ", _options.CustomSuffixes)}");
-                System.Console.WriteLine($"16. Max Count: {_options.MaxCount}");
+                System.Console.WriteLine($"10. Max Count: {_options.MaxCount}");
 
                 System.Console.WriteLine("0. Back to main menu");
 
@@ -58,7 +52,8 @@ namespace PassForge.Console.Menus
                         _options.IncludeSpecial = UserInput.PromptBool("Include special characters?");
                         break;
                     case "7":
-                        _options.SpecialCharacters = UserInput.Prompt("Enter allowed special characters", _options.SpecialCharacters);
+                        var separators = UserInput.Prompt("Enter allowed separators (e.g. ._-)", string.Join("", _options.Separators));
+                        _options.Separators = separators.Distinct().ToList();
                         break;
                     case "8":
                         _options.UseLeet = UserInput.PromptBool("Enable leet transformations?");
@@ -67,25 +62,6 @@ namespace PassForge.Console.Menus
                         _options.IncludeReversed = UserInput.PromptBool("Include reversed variants?");
                         break;
                     case "10":
-                        _options.IncludeWordCaseVariants = UserInput.PromptBool("Include case variants?");
-                        break;
-                    case "11":
-                        _options.RequireAtLeastOneFromEachSelectedCategory = UserInput.PromptBool("Require at least one from each selected category?");
-                        break;
-                    case "12":
-                        _options.Separators = UserInput.Prompt("Enter separators as string (e.g. ._-)", _options.Separators);
-                        break;
-                    case "13":
-                        _options.MaxTokensPerPassword = UserInput.PromptInt("Enter max tokens per password", _options.MaxTokensPerPassword);
-                        break;
-                    case "14":
-                        _options.AppendCommonNumbers = UserInput.PromptBool("Append common numbers?");
-                        break;
-                    case "15":
-                        var input = UserInput.Prompt("Enter custom suffixes separated by commas", string.Join(",", _options.CustomSuffixes));
-                        _options.CustomSuffixes = input.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim());
-                        break;
-                    case "16":
                         _options.MaxCount = UserInput.PromptInt("Enter max password count", _options.MaxCount);
                         break;
                     default:
